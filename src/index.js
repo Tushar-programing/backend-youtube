@@ -1,12 +1,19 @@
 // require('dotenv').config({path: './env'})
 import dotenv from "dotenv"
+import express from "express";
 import connectDB from "./db/index.js";
 import {app} from './app.js'
 dotenv.config({
     path: './.env'
 })
+const ap = express()
+ap.use("/", (req, res) => {
+    res.json({ message: "hello world from expres"})
+});
 
-
+ap.listen(9000, () => {
+    console.log("app started successfully");
+})
 
 connectDB()
 .then(() => {
